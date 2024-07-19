@@ -40,7 +40,7 @@ export async function removeContact(id) {
 
   await updateContacts(allContacts);
 
-  return result;
+  return result || null;
 }
 
 export async function updateContactById(id, data) {

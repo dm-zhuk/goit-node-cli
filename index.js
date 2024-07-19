@@ -52,9 +52,3 @@ async function invokeAction({ action, id, ...data }) {
 }
 
 invokeAction(options);
-
-// invokeAction({ action: "get", id: "qdggE76Jtbfd9eWJHrssH" });
-
-// invokeAction({ action: "get", id: "qdggE76Jtbfd9eWJHrssz" });
-
-// invokeAction({ action: "remove", id: "qdggE76Jtbfd9eWJHrssH" });
