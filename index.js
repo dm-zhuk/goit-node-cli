@@ -1,4 +1,13 @@
+import {
+  listContacts,
+  getContactById,
+  addContact,
+  removeContact,
+  updateContactById,
+} from "./contacts.js";
+
 import { program } from "commander";
+
 program
   .option("-a, --action <type>", "choose action")
   .option("-i, --id <type>", "user id")
@@ -10,23 +19,31 @@ program.parse();
 
 const options = program.opts();
 
-// TODO: рефакторити
-async function invokeAction({ action, id, name, email, phone }) {
+async function invokeAction({ action, id, ...data }) {
   switch (action) {
     case "list":
-      // ...
+      const allContacts = await listContacts();
+      console.log(allContacts);
       break;
 
     case "get":
-      // ... id
+      const contactId = await getContactById(id);
+      console.log(contactId);
       break;
 
     case "add":
-      // ... name email phone
+      const newContact = await addContact(data);
+      console.log(newContact);
       break;
 
     case "remove":
-      // ... id
+      const removedContact = await removeContact(id);
+      console.log(removedContact);
+      break;
+
+    case "update":
+      const updateContact = await updateContactById(id, data);
+      console.log(updateContact);
       break;
 
     default:
@@ -35,3 +52,9 @@ async function invokeAction({ action, id, name, email, phone }) {
 }
 
 invokeAction(options);
+
+// invokeAction({ action: "get", id: "qdggE76Jtbfd9eWJHrssH" });
+
+// invokeAction({ action: "get", id: "qdggE76Jtbfd9eWJHrssz" });
+
+// invokeAction({ action: "remove", id: "qdggE76Jtbfd9eWJHrssH" });
