@@ -36,7 +36,7 @@ async function invokeAction({ action, id, ...data }) {
 
     case "update":
       const updateContact = await cm.updateContactById(id, data);
-      console.log("Updated contact", updateContact);
+      console.log("Updated contact: ", updateContact);
       break;
 
     default:
@@ -44,4 +44,4 @@ async function invokeAction({ action, id, ...data }) {
   }
 }
 
-// invokeAction(options);
+invokeAction(options);
