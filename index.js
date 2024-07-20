@@ -1,11 +1,4 @@
-import {
-  listContacts,
-  getContactById,
-  addContact,
-  removeContact,
-  updateContactById,
-} from "./contacts.js";
-
+import * as cm from "./contacts.js"; // contacts module as 'cm'
 import { program } from "commander";
 
 program
@@ -22,28 +15,28 @@ const options = program.opts();
 async function invokeAction({ action, id, ...data }) {
   switch (action) {
     case "list":
-      const allContacts = await listContacts();
+      const allContacts = await cm.listContacts();
       console.log(allContacts);
       break;
 
     case "get":
-      const contactId = await getContactById(id);
-      console.log(contactId);
+      const contactId = await cm.getContactById(id);
+      console.log("Contact ID: ", contactId);
       break;
 
     case "add":
-      const newContact = await addContact(data);
-      console.log(newContact);
+      const newContact = await cm.addContact(data);
+      console.log("New contact: ", newContact);
       break;
 
     case "remove":
-      const removedContact = await removeContact(id);
-      console.log(removedContact);
+      const removedContact = await cm.removeContact(id);
+      console.log("Removed contact: ", removedContact);
       break;
 
     case "update":
-      const updateContact = await updateContactById(id, data);
-      console.log(updateContact);
+      const updateContact = await cm.updateContactById(id, data);
+      console.log("Updated contact", updateContact);
       break;
 
     default:
@@ -51,4 +44,4 @@ async function invokeAction({ action, id, ...data }) {
   }
 }
 
-invokeAction(options);
+// invokeAction(options);
